@@ -1,0 +1,70 @@
+version: '3'
+services:
+  krakend:
+    image: devopsfaith/krakend
+    ports:
+      - 8080:8080
+    volumes:
+      - ./krakend.json:/etc/krakend/krakend.json
+    depends_on:
+      - sp-positions-main-service
+    networks:
+      - emotico
+
+  postgres:
+    container_name: postgres
+    image: postgres:11-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=users
+    command: ["postgres", "-c", "log_statement=all"]
+    volumes:
+      - postgres-vol:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+    networks:
+      - emotico
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    networks:
+      - emotico
+
+  sp-positions-main-service:
+      container_name: sp-positions-main-service
+      ports:
+        - 9000:9000
+      build:
+        context: sp-positions-main-service
+        dockerfile: build/Dockerfile
+      restart: always
+      networks:
+        - emotico
+      volumes:
+        - ./configs/sp-positions-main-service/config.yaml:/app/config/config.yaml
+  
+  users-auth-service:
+      container_name: users-auth-service
+      ports:
+        - 9001:9001
+      build:
+        context: users-auth-service
+        dockerfile: build/Dockerfile
+      restart: always
+      networks:
+        - emotico
+      volumes:
+        - ./configs/users-auth-service/config.yaml:/app/config/config.yaml
+
+networks:
+  emotico:
+    driver: bridge
+
+volumes:
+  postgres-vol:
+  positions-vol:

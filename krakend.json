@@ -1,0 +1,219 @@
+{
+    "version": 3,
+    "middlewares": {
+      "auth_middleware": {
+        "backend": {
+          "url_pattern": "/position",
+          "extra_config": {
+            "github.com/Zhiyenbek/users-auth-service/middleware": {
+              "token_secret": "superdupersecret"
+            }
+          }
+        }
+      }
+    },
+    "endpoints": [
+      {
+        "endpoint": "/positions",
+        "output_encoding": "no-op",
+        "method": "GET",
+        "backend": [
+          {
+            "url_pattern": "/positions",
+            "host": [
+              "http://sp-positions-main-service:9000"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/positions/:position_public_id/interviews",
+        "output_encoding": "no-op",
+        "method": "GET",
+        "backend": [
+          {
+            "url_pattern": "/positions/:position_public_id/interviews",
+            "host": [
+              "http://sp-positions-main-service:9000"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/position/:position_public_id",
+        "output_encoding": "no-op",
+        "method": "GET",
+        "backend": [
+          {
+            "url_pattern": "/position/:position_public_id",
+            "host": [
+              "http://sp-positions-main-service:9000"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/position",
+        "output_encoding": "no-op",
+        "method": "POST",
+        "backend": [
+          {
+            "url_pattern": "/position",
+            "host": [
+              "http://sp-positions-main-service:9000"
+            ],
+            "extra_config": {
+              "auth_middleware": {},
+              "backend/http": {
+                "return_error_details": "backend_alias"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/position/:position_public_id/skills",
+        "output_encoding": "no-op",
+        "method": "POST",
+        "backend": [
+          {
+            "url_pattern": "/position/:position_public_id/skills",
+            "host": [
+              "http://sp-positions-main-service:9000"
+            ],
+            "extra_config": {
+              "auth_middleware": {},
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/position/:position_public_id/skills",
+        "output_encoding": "no-op",
+        "method": "DELETE",
+        "backend": [
+          {
+            "url_pattern": "/position/:position_public_id/skills",
+            "host": [
+              "http://sp-positions-main-service:9000"
+            ],
+            "extra_config": {
+              "auth_middleware": {},
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/another-endpoint",
+        "output_encoding": "no-op",
+        "method": "GET",
+        "backend": [
+          {
+            "url_pattern": "/another-endpoint",
+            "host": [
+              "http://another_host:9000"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/recruiter/sign-in",
+        "output_encoding": "no-op",
+        "method": "POST",
+        "backend": [
+          {
+            "url_pattern": "/recruiter/sign-in",
+            "host": [
+              "http://users-auth-service:9001"
+            ],
+            "extra_config": {
+              "auth_middleware": {},
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/candidate/sign-in",
+        "output_encoding": "no-op",
+        "method": "POST",
+        "backend": [
+          {
+            "url_pattern": "/candidate/sign-in",
+            "host": [
+              "http://users-auth-service:9001"
+            ],
+            "extra_config": {
+              "auth_middleware": {},
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/recruiter/sign-up",
+        "output_encoding": "no-op",
+        "method": "POST",
+        "backend": [
+          {
+            "url_pattern": "/recruiter/sign-up",
+            "host": [
+              "http://users-auth-service:9001"
+            ],
+            "extra_config": {
+              "auth_middleware": {},
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/candidate/sign-up",
+        "output_encoding": "no-op",
+        "method": "POST",
+        "backend": [
+          {
+            "url_pattern": "/candidate/sign-up",
+            "host": [
+              "http://users-auth-service:9001"
+            ],
+            "extra_config": {
+              "auth_middleware": {},
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/refresh-token",
+        "output_encoding": "no-op",
+        "method": "POST",
+        "backend": [
+          {
+            "url_pattern": "/refresh-token",
+            "host": [
+              "http://users-auth-service:9001"
+            ],
+            "extra_config": {
+              "auth_middleware": {},
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      }
+    ]
+  }
