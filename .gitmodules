@@ -1,0 +1,9 @@
+[submodule "users-auth-service"]
+	path = users-auth-service
+	url = git@github.com:Zhiyenbek/users-auth-service.git
+[submodule "sp-positions-main-service"]
+	path = sp-positions-main-service
+	url = git@github.com:Zhiyenbek/sp-positions-main-service.git
+[submodule "sp-users-main-service"]
+	path = sp-users-main-service
+	url = git@github.com:Zhiyenbek/sp-users-main-service.git

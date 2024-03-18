@@ -61,6 +61,20 @@ services:
       volumes:
         - ./configs/users-auth-service/config.yaml:/app/config/config.yaml
 
+
+  sp-users-main-service:
+      container_name: sp-users-main-service
+      ports:
+        - 9002:9002
+      build:
+        context: sp-users-main-service
+        dockerfile: build/Dockerfile
+      restart: always
+      networks:
+        - emotico
+      volumes:
+        - ./configs/sp-users-main-service/config.yaml:/app/config/config.yaml
+
 networks:
   emotico:
     driver: bridge
