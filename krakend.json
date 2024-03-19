@@ -8,6 +8,11 @@
         "endpoint": "/positions",
         "output_encoding": "no-op",
         "method": "GET",
+        "input_query_strings":[
+          "search",
+          "page_num",
+          "page_size"
+        ],
         "backend": [
           {
             "url_pattern": "/positions",
@@ -25,6 +30,11 @@
         "endpoint": "/positions/:position_public_id/interviews",
         "output_encoding": "no-op",
         "method": "GET",
+        "input_query_strings":[
+          "search",
+          "page_num",
+          "page_size"
+        ],
         "backend": [
           {
             "url_pattern": "/positions/:position_public_id/interviews",
@@ -42,6 +52,11 @@
         "endpoint": "/position/:position_public_id",
         "output_encoding": "no-op",
         "method": "GET",
+        "input_query_strings":[
+          "search",
+          "page_num",
+          "page_size"
+        ],
         "backend": [
           {
             "url_pattern": "/position/:position_public_id",
@@ -312,6 +327,11 @@
         "endpoint": "/account",
         "output_encoding": "no-op",
         "method": "GET",
+        "input_query_strings":[
+          "search",
+          "page_num",
+          "page_size"
+        ],
         "backend": [
           {
             "url_pattern": "/account",
@@ -351,6 +371,11 @@
         "endpoint": "/candidate/{candidate_public_id}",
         "output_encoding": "no-op",
         "method": "GET",
+        "input_query_strings":[
+          "search",
+          "page_num",
+          "page_size"
+        ],
         "backend": [
           {
             "url_pattern": "/candidate/{candidate_public_id}",
@@ -382,6 +407,84 @@
         ]
       },
       {
+        "endpoint": "/company",
+        "method": "POST",
+        "output_encoding": "no-op",
+        "backend": [
+          {
+            "url_pattern": "/company",
+            "encoding": "no-op",
+            "host": [
+              "http://sp-users-main-service:9002"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/companies",
+        "method": "GET",
+        "input_query_strings":[
+          "search",
+          "page_num",
+          "page_size"
+        ],
+        "output_encoding": "no-op",
+        "backend": [
+          {
+            "url_pattern": "/companies",
+            "encoding": "no-op",
+            "host": [
+              "http://sp-users-main-service:9002"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/company/{public_id}",
+        "method": "GET",
+        "input_query_strings":[
+          "search",
+          "page_num",
+          "page_size"
+        ],
+        "output_encoding": "no-op",
+        "backend": [
+          {
+            "url_pattern": "/company/{public_id}",
+            "encoding": "no-op",
+            "host": [
+              "http://sp-users-main-service:9002"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/company",
+        "output_encoding": "no-op",
+        "method": "PUT",
+        "backend": [
+          {
+            "url_pattern": "/company",
+            "encoding": "no-op",
+            "host": [
+              "http://sp-users-main-service:9002"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
         "endpoint": "/candidate/{candidate_public_id}",
         "output_encoding": "no-op",
         "method": "DELETE",
@@ -391,6 +494,45 @@
             "encoding": "no-op",
             "host": [
               "http://sp-users-main-service:9002"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/companies/{company_public_id}/positions",
+        "method": "GET",
+        "output_encoding": "no-op",
+        "backend": [
+          {
+            "url_pattern": "/companies/{company_public_id}/positions",
+            "encoding": "no-op",
+            "host": [
+              "http://sp-positions-main-service:9000"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/recruiters/{recruiter_public_id}/positions",
+        "method": "GET",
+        "output_encoding": "no-op",
+        "input_query_strings":[
+          "search",
+          "page_num",
+          "page_size"
+        ],
+        "backend": [
+          {
+            "url_pattern": "/recruiters/{recruiter_public_id}/positions",
+            "encoding": "no-op",
+            "host": [
+              "http://sp-positions-main-service:9000"
             ],
             "extra_config": {
               "github.com/devopsfaith/krakend-cors": {}
