@@ -16,7 +16,7 @@ redis:
 token:
   access:
     token_secret: superdupersecret
-    ttl: 900s
+    ttl: 9000s
     domain: localhost
   refresh:
     token_secret: superdupersecretofsecrets
