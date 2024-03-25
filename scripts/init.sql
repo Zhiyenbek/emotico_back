@@ -94,9 +94,9 @@ CREATE TABLE IF NOT EXISTS candidate_skills (
 );
 
 CREATE TABLE IF NOT EXISTS user_interviews (
-    candidate_id INT,
-    position_id INT,
-    interview_id INT,
+    candidate_id INT NOT NULL,
+    position_id INT NOT NULL,
+    interview_id INT UNIQUE NOT NULL,
     PRIMARY KEY (candidate_id, position_id, interview_id),
     CONSTRAINT fk_user_interviews_candidates FOREIGN KEY (candidate_id) REFERENCES candidates(id) ON DELETE CASCADE,
     CONSTRAINT fk_user_interviews_positions FOREIGN KEY (position_id) REFERENCES positions(id) ON DELETE CASCADE,
@@ -235,10 +235,11 @@ insert into candidate_skills values (2,2);
 insert into candidate_skills values (1,3);
 insert into candidate_skills values (3,4);
 
-INSERT INTO user_interviews (candidate_id, position_id, interview_id)
-SELECT c.id AS candidate_id, p.id AS position_id, i.id AS interview_id
-FROM candidates c
-CROSS JOIN positions p
-CROSS JOIN interviews i
-WHERE c.id <= 5;
+insert into user_interviews values (1,1,1);
+insert into user_interviews values (1,1,2);
+insert into user_interviews values (1,2,3);
+insert into user_interviews values (1,2,4);
+insert into user_interviews values (2,2,5);
+
+
 

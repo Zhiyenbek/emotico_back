@@ -75,6 +75,32 @@ services:
       volumes:
         - ./configs/sp-users-main-service/config.yaml:/app/config/config.yaml
 
+  sp-interview-main-service:
+      container_name: sp-interview-main-service
+      ports:
+        - 9003:9003
+      build:
+        context: sp-interview-main-service
+        dockerfile: build/Dockerfile
+      restart: always
+      networks:
+        - emotico
+      volumes:
+        - ./configs/sp-interview-main-service/config.yaml:/app/config/config.yaml
+        - videos-vol:/app/videos
+      
+  # sp-video-answer-analyzer:
+  #     container_name: sp-video-answer-analyzer
+  #     ports:
+  #       - 9004:9004
+  #     build:
+  #       context: sp-video-answer-analyzer
+  #       dockerfile: Dockerfile
+  #     restart: always
+  #     networks:
+  #       - emotico
+  #     volumes:
+  #       - videos-vol:/app/videos
 networks:
   emotico:
     driver: bridge
@@ -82,3 +108,4 @@ networks:
 volumes:
   postgres-vol:
   positions-vol:
+  videos-vol:

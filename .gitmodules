@@ -7,3 +7,9 @@
 [submodule "sp-users-main-service"]
 	path = sp-users-main-service
 	url = git@github.com:Zhiyenbek/sp-users-main-service.git
+[submodule "sp-interview-main-service"]
+	path = sp-interview-main-service
+	url = git@github.com:Zhiyenbek/sp-interview-main-service.git
+[submodule "sp-video-answer-analyzer"]
+	path = sp-video-answer-analyzer
+	url = https://github.com/shellypek/sp-video-answer-analyzer.git
