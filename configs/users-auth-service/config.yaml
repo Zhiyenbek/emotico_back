@@ -20,5 +20,5 @@ token:
     domain: localhost
   refresh:
     token_secret: superdupersecretofsecrets
-    ttl: 9000s
+    ttl: 86400s
     domain: localhost
