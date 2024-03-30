@@ -688,8 +688,7 @@
             }
           }
         ]
-      }
-      ,
+      },
       {
         "endpoint": "/position/{position_public_id}/questions",
         "method": "GET",
@@ -700,6 +699,26 @@
         "backend": [
           {
             "url_pattern": "/position/{position_public_id}/questions",
+            "encoding": "no-op",
+            "host": [
+              "http://sp-positions-main-service:9000"
+            ],
+            "extra_config": {
+              "github.com/devopsfaith/krakend-cors": {}
+            }
+          }
+        ]
+      },
+      {
+        "endpoint": "/position/{position_public_id}/interview",
+        "method": "POST",
+        "output_encoding": "no-op",
+        "input_headers":[
+          "Cookie"
+        ],
+        "backend": [
+          {
+            "url_pattern": "/position/{position_public_id}/interview",
             "encoding": "no-op",
             "host": [
               "http://sp-positions-main-service:9000"
