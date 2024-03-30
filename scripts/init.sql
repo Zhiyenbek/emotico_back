@@ -60,6 +60,7 @@ CREATE TABLE IF NOT EXISTS areas (
 CREATE TABLE IF NOT EXISTS interviews (
     id SERIAL PRIMARY KEY,
     public_id UUID UNIQUE DEFAULT uuid_generate_v4() NOT NULL,
+    status int DEFAULT 0,
     results JSONB
 );
 
@@ -101,6 +102,18 @@ CREATE TABLE IF NOT EXISTS user_interviews (
     CONSTRAINT fk_user_interviews_candidates FOREIGN KEY (candidate_id) REFERENCES candidates(id) ON DELETE CASCADE,
     CONSTRAINT fk_user_interviews_positions FOREIGN KEY (position_id) REFERENCES positions(id) ON DELETE CASCADE,
     CONSTRAINT fk_user_interviews_interviews FOREIGN KEY (interview_id) REFERENCES interviews(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS questions (
+    id int,
+    public_id UUID UNIQUE DEFAULT uuid_generate_v4() NOT NULL,
+    name TEXT NOT NULL,
+    position_public_id UUID NOT NULL,
+    position_id int NOT NULL,
+    read_duration int,
+    answer_duration int,
+    CONSTRAINT fk_question_position FOREIGN KEY (position_id) REFERENCES positions(id) ON DELETE CASCADE,
+    CONSTRAINT fk_question_public_position FOREIGN KEY (position_public_id) REFERENCES positions(public_id) ON DELETE CASCADE
 );
 
 -- Creating references
