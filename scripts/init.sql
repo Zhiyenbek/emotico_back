@@ -7,18 +7,18 @@ CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     public_id UUID UNIQUE DEFAULT uuid_generate_v4() NOT NULL,
     first_name TEXT NOT NULL,
-    last_name VARCHAR(50) NOT NULL DEFAULT '',
-    email VARCHAR(50) NOT NULL DEFAULT '',
-    photo VARCHAR(50) NOT NULL DEFAULT ''
+    last_name TEXT NOT NULL DEFAULT '',
+    email TEXT NOT NULL DEFAULT '',
+    photo TEXT NOT NULL DEFAULT ''
 );
 
 CREATE TABLE IF NOT EXISTS candidates (
     id SERIAL PRIMARY KEY,
     public_id UUID UNIQUE NOT NULL,
-    current_position VARCHAR(50) NOT NULL DEFAULT '',
-    education VARCHAR(50) NOT NULL DEFAULT '',
-    resume VARCHAR(50) NOT NULL DEFAULT '',
-    bio VARCHAR(50) NOT NULL DEFAULT ''
+    current_position TEXT NOT NULL DEFAULT '',
+    education TEXT NOT NULL DEFAULT '',
+    resume TEXT NOT NULL DEFAULT '',
+    bio TEXT NOT NULL DEFAULT ''
 );
 
 CREATE TABLE IF NOT EXISTS recruiters (
@@ -31,15 +31,15 @@ CREATE TABLE IF NOT EXISTS companies (
     id SERIAL PRIMARY KEY,
     public_id UUID UNIQUE DEFAULT uuid_generate_v4() NOT NULL,
     name TEXT NOT NULL,
-    logo VARCHAR(50) NOT NULL DEFAULT '',
-    description VARCHAR(700) NOT NULL DEFAULT ''
+    logo TEXT NOT NULL DEFAULT '',
+    description TEXT NOT NULL DEFAULT ''
 );
 
 CREATE TABLE IF NOT EXISTS positions (
     id SERIAL PRIMARY KEY,
     public_id UUID UNIQUE DEFAULT uuid_generate_v4() NOT NULL,
-    description VARCHAR(1000) NOT NULL DEFAULT '',
-    name VARCHAR(50) NOT NULL DEFAULT '',
+    description TEXT NOT NULL DEFAULT '',
+    name TEXT NOT NULL DEFAULT '',
     status int DEFAULT 0,
     recruiter_public_id UUID NOT NULL
 );
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS videos (
     id SERIAL PRIMARY KEY,
     public_id UUID UNIQUE DEFAULT uuid_generate_v4() NOT NULL,
     interviews_public_id UUID,
-    path VARCHAR(50) NOT NULL DEFAULT ''
+    path TEXT NOT NULL DEFAULT ''
 );
 
 CREATE TABLE IF NOT EXISTS auth (
@@ -127,16 +127,16 @@ ALTER TABLE videos ADD CONSTRAINT fk_videos_interviews FOREIGN KEY (interviews_p
 
 INSERT INTO users (first_name, last_name, photo, email)
 VALUES
-    ('John', 'Doe', 'path/to/photo1', 'example@mail.com'),
-    ('Jane', 'Smith', 'path/to/photo2', 'example@mail.com'),
-    ('Michael', 'Johnson', 'path/to/photo3', 'example@mail.com'),
-    ('Emily', 'Williams', 'path/to/photo4', 'example@mail.com'),
-    ('David', 'Brown', 'path/to/photo5', 'example@mail.com'),
-    ('Olivia', 'Jones', 'path/to/photo6', 'example@mail.com'),
-    ('Daniel', 'Miller','path/to/photo7', 'example@mail.com'),
-    ('Sophia', 'Taylor','path/to/photo8', 'example@mail.com'),
-    ('Matthew', 'Anderson','path/to/photo9', 'example@mail.com'),
-    ('Ava', 'Thomas','path/to/photo10', 'example@mail.com');
+    ('John', 'Doe', '', 'example@mail.com'),
+    ('Jane', 'Smith', '', 'example@mail.com'),
+    ('Michael', 'Johnson', '', 'example@mail.com'),
+    ('Emily', 'Williams', '', 'example@mail.com'),
+    ('David', 'Brown', '', 'example@mail.com'),
+    ('Olivia', 'Jones', '', 'example@mail.com'),
+    ('Daniel', 'Miller','', 'example@mail.com'),
+    ('Sophia', 'Taylor','', 'example@mail.com'),
+    ('Matthew', 'Anderson','', 'example@mail.com'),
+    ('Ava', 'Thomas','', 'example@mail.com');
 
 
 INSERT INTO candidates (public_id, current_position, resume, bio, education)
@@ -146,9 +146,9 @@ WHERE id <= 5;
 
 INSERT INTO companies (name, description, logo)
 VALUES
-    ('Company A', 'A technology company that specializes in software development.','path/to/logo1'),
-    ('Company B', 'A global retail company with a focus on e-commerce.','path/to/logo2'),
-    ('Company C', 'A financial services company providing investment and banking solutions.','path/to/logo3');
+    ('Company A', 'A technology company that specializes in software development.',''),
+    ('Company B', 'A global retail company with a focus on e-commerce.',''),
+    ('Company C', 'A financial services company providing investment and banking solutions.','');
 
 INSERT INTO recruiters (public_id, company_public_id)
 SELECT public_id, (SELECT public_id FROM companies WHERE name = 'Company A')
@@ -161,7 +161,6 @@ WHERE id > 5;
 INSERT INTO positions (public_id, name, recruiter_public_id, description)
 SELECT public_id, 'Software Engineer', (SELECT public_id FROM recruiters WHERE id = 1), 'This position is awesome'
 FROM candidates;
-
 
 INSERT INTO skills (name)
 VALUES
@@ -189,7 +188,7 @@ SELECT public_id, '
       "question": "What is your experience with object-oriented programming?",
       "evaluation": "Good",
       "score": 8,
-      "video_link": "https://example.com/video1",
+      "video_link": "",
       "emotion_results": [
         {
           "emotion": "Happiness",
@@ -207,7 +206,7 @@ SELECT public_id, '
       "question": "Describe a challenging project you have worked on.",
       "evaluation": "Excellent performance with exceptional problem-solving skills",
       "score": 9,
-      "video_link": "https://example.com/video2",
+      "video_link": "",
       "emotion_results": [
         {
           "emotion": "Confidence",
@@ -223,13 +222,13 @@ SELECT public_id, '
     }
   ],
   "score": 17,
-  "video": "https://example.com/interview_video"
+  "video": ""
 }'
 FROM candidates;
 
 
 INSERT INTO videos (public_id, interviews_public_id, path)
-SELECT public_id, (SELECT public_id FROM interviews WHERE id = 1), '/path/to/video'
+SELECT public_id, (SELECT public_id FROM interviews WHERE id = 1), ''
 FROM candidates;
 
 
@@ -254,5 +253,18 @@ insert into user_interviews values (1,2,3);
 insert into user_interviews values (1,2,4);
 insert into user_interviews values (2,2,5);
 
+
+
+INSERT INTO questions (id, name, position_public_id, position_id, read_duration, answer_duration)
+SELECT
+    q.id,
+    'Question ' || q.id,
+    p.public_id,
+    p.id,
+    FLOOR(RANDOM() * 50) + 10 as read_duration,
+    FLOOR(RANDOM() * 50) + 10 as answer_duration
+FROM
+    generate_series(1, 10) as q(id),
+    (SELECT id, public_id FROM positions ORDER BY RANDOM() LIMIT 1) as p;
 
 
