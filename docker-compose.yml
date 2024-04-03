@@ -89,18 +89,20 @@ services:
         - ./configs/sp-interview-main-service/config.yaml:/app/config/config.yaml
         - videos-vol:/app/videos
       
-  # sp-video-answer-analyzer:
-  #     container_name: sp-video-answer-analyzer
-  #     ports:
-  #       - 9004:9004
-  #     build:
-  #       context: sp-video-answer-analyzer
-  #       dockerfile: Dockerfile
-  #     restart: always
-  #     networks:
-  #       - emotico
-  #     volumes:
-  #       - videos-vol:/app/videos
+  sp-video-answer-analyzer:
+      container_name: sp-video-answer-analyzer
+      ports:
+        - 9004:9004
+      environment:
+      - API_KEY=
+      build:
+        context: sp-video-answer-analyzer
+        dockerfile: Dockerfile
+      restart: always
+      networks:
+        - emotico
+      volumes:
+        - videos-vol:/app/videos
 networks:
   emotico:
     driver: bridge
