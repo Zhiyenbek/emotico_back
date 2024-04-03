@@ -1,733 +1,812 @@
 {
-    "version": 3,
-    "middlewares": {
+  "version": 3,
+  "middlewares": {
 
+  },
+  "timeout": "600s",
+  "endpoints": [
+    {
+      "endpoint": "/positions",
+      "output_encoding": "no-op",
+      "method": "GET",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/positions",
+          "encoding": "no-op", 
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
+          }
+        }
+      ]
     },
-    "endpoints": [
-      {
-        "endpoint": "/positions",
-        "output_encoding": "no-op",
-        "method": "GET",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/positions",
-            "encoding": "no-op", 
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+    {
+      "endpoint": "/positions/{position_public_id}/interviews",
+      "output_encoding": "no-op",
+      "method": "GET",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/positions/{position_public_id}/interviews",
+          "encoding": "no-op", 
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/positions/{position_public_id}/interviews",
-        "output_encoding": "no-op",
-        "method": "GET",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/positions/{position_public_id}/interviews",
-            "encoding": "no-op", 
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/position/{position_public_id}",
+      "output_encoding": "no-op",
+      "method": "GET",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/position/{position_public_id}",
+          "encoding": "no-op", 
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/position/{position_public_id}",
-        "output_encoding": "no-op",
-        "method": "GET",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/position/{position_public_id}",
-            "encoding": "no-op", 
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/position",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "input_headers": [
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/position",
+          "encoding": "no-op",      
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/position",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "input_headers": [
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/position",
-            "encoding": "no-op",      
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/position/{position_public_id}/skills",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/position/{position_public_id}/skills",
+          "encoding": "no-op", 
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/position/{position_public_id}/skills",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "backend": [
-          {
-            "url_pattern": "/position/{position_public_id}/skills",
-            "encoding": "no-op", 
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/position/{position_public_id}/skills",
+      "output_encoding": "no-op",
+      "method": "DELETE",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/position/{position_public_id}/skills",
+          "encoding": "no-op", 
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/position/{position_public_id}/skills",
-        "output_encoding": "no-op",
-        "method": "DELETE",
-        "backend": [
-          {
-            "url_pattern": "/position/{position_public_id}/skills",
-            "encoding": "no-op", 
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/recruiter/sign-in",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/recruiter/sign-in",
+          "encoding": "no-op",      
+          "ouput_headers":[
+              "Cookie"
+          ],
+          "host": [
+            "http://users-auth-service:9001"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/recruiter/sign-in",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "backend": [
-          {
-            "url_pattern": "/recruiter/sign-in",
-            "encoding": "no-op",      
-            "ouput_headers":[
-                "Cookie"
-            ],
-            "host": [
-              "http://users-auth-service:9001"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate/sign-in",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/sign-in",
+          "encoding": "no-op", 
+          "host": [
+            "http://users-auth-service:9001"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate/sign-in",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "backend": [
-          {
-            "url_pattern": "/candidate/sign-in",
-            "encoding": "no-op", 
-            "host": [
-              "http://users-auth-service:9001"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/recruiter/sign-up",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/recruiter/sign-up",
+          "encoding": "no-op", 
+          "host": [
+            "http://users-auth-service:9001"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/recruiter/sign-up",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "backend": [
-          {
-            "url_pattern": "/recruiter/sign-up",
-            "encoding": "no-op", 
-            "host": [
-              "http://users-auth-service:9001"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate/sign-up",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/sign-up",
+          "encoding": "no-op", 
+          "host": [
+            "http://users-auth-service:9001"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate/sign-up",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "backend": [
-          {
-            "url_pattern": "/candidate/sign-up",
-            "encoding": "no-op", 
-            "host": [
-              "http://users-auth-service:9001"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/refresh-token",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "input_headers": [
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/refresh-token",
+          "encoding": "no-op",      
+          "host": [
+            "http://users-auth-service:9001"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/refresh-token",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "input_headers": [
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/refresh-token",
-            "encoding": "no-op",      
-            "host": [
-              "http://users-auth-service:9001"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
-          }
-        ]
-      },
-      {
-        "endpoint": "/verify",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "input_headers": [
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/verify",
-            "host": [
-              "http://users-auth-service:9001"
-            ],
-            "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/verify",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "input_headers": [
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/verify",
+          "host": [
+            "http://users-auth-service:9001"
+          ],
+          "encoding": "no-op"
 
+        }
+      ]
+    },
+    {
+      "endpoint": "/sign-out",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "input_headers": [
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/sign-out",
+          "host": [
+            "http://users-auth-service:9001"
+          ],
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate",
+      "output_encoding": "no-op",
+      "method": "PUT",
+      "input_headers": [
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/sign-out",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "input_headers": [
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/sign-out",
-            "host": [
-              "http://users-auth-service:9001"
-            ],
-            "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate",
+      "output_encoding": "no-op",
+      "method": "DELETE",
+      "input_headers": [
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate",
-        "output_encoding": "no-op",
-        "method": "PUT",
-        "input_headers": [
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/candidate",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate/skills",
+      "output_encoding": "no-op",
+      "method": "POST",
+      "input_headers": [
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/skills",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate",
-        "output_encoding": "no-op",
-        "method": "DELETE",
-        "input_headers": [
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/candidate",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate/skills",
+      "output_encoding": "no-op",
+      "input_headers": [
+        "Cookie"
+      ],
+      "method": "DELETE",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/skills",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate/skills",
-        "output_encoding": "no-op",
-        "method": "POST",
-        "input_headers": [
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/candidate/skills",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/account",
+      "output_encoding": "no-op",
+      "method": "GET",
+      "input_headers": [
+        "Cookie"
+      ],
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/account",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate/skills",
-        "output_encoding": "no-op",
-        "input_headers": [
-          "Cookie"
-        ],
-        "method": "DELETE",
-        "backend": [
-          {
-            "url_pattern": "/candidate/skills",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidates",
+      "output_encoding": "no-op",
+      "method": "GET",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidates",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/account",
-        "output_encoding": "no-op",
-        "method": "GET",
-        "input_headers": [
-          "Cookie"
-        ],
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/account",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate/{candidate_public_id}",
+      "output_encoding": "no-op",
+      "method": "GET",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/{candidate_public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidates",
-        "output_encoding": "no-op",
-        "method": "GET",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/candidates",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint":"/candidate/{candidate_public_id}/interviews",
+      "output_encoding": "no-op",
+      "method": "GET",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/{candidate_public_id}/interviews",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate/{candidate_public_id}",
-        "output_encoding": "no-op",
-        "method": "GET",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/candidate/{candidate_public_id}",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint":"/candidate/interviews",
+      "output_encoding": "no-op",
+      "method": "GET",
+      "input_headers":[
+        "Cookie"
+      ],
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/interviews",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint":"/candidate/{candidate_public_id}/interviews",
-        "output_encoding": "no-op",
-        "method": "GET",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/candidate/{candidate_public_id}/interviews",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate/{candidate_public_id}",
+      "output_encoding": "no-op",
+      "method": "PUT",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/{candidate_public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint":"/candidate/interviews",
-        "output_encoding": "no-op",
-        "method": "GET",
-        "input_headers":[
-          "Cookie"
-        ],
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/candidate/interviews",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/company",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/company",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate/{candidate_public_id}",
-        "output_encoding": "no-op",
-        "method": "PUT",
-        "backend": [
-          {
-            "url_pattern": "/candidate/{candidate_public_id}",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/companies",
+      "method": "GET",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "output_encoding": "no-op",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/companies",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/company",
-        "method": "POST",
-        "output_encoding": "no-op",
-        "backend": [
-          {
-            "url_pattern": "/company",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/company/{public_id}",
+      "method": "GET",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "output_encoding": "no-op",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/company/{public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/companies",
-        "method": "GET",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "output_encoding": "no-op",
-        "backend": [
-          {
-            "url_pattern": "/companies",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/company/{public_id}",
+      "output_encoding": "no-op",
+      "method": "PUT",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/company/{public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/company/{public_id}",
-        "method": "GET",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "output_encoding": "no-op",
-        "backend": [
-          {
-            "url_pattern": "/company/{public_id}",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/candidate/{candidate_public_id}",
+      "output_encoding": "no-op",
+      "method": "DELETE",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/candidate/{candidate_public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/company/{public_id}",
-        "output_encoding": "no-op",
-        "method": "PUT",
-        "backend": [
-          {
-            "url_pattern": "/company/{public_id}",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/companies/{company_public_id}/positions",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/companies/{company_public_id}/positions",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/candidate/{candidate_public_id}",
-        "output_encoding": "no-op",
-        "method": "DELETE",
-        "backend": [
-          {
-            "url_pattern": "/candidate/{candidate_public_id}",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/recruiters/{recruiter_public_id}/positions",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/recruiters/{recruiter_public_id}/positions",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/companies/{company_public_id}/positions",
-        "method": "GET",
-        "output_encoding": "no-op",
-        "backend": [
-          {
-            "url_pattern": "/companies/{company_public_id}/positions",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/recruiter/{recruiter_public_id}/interviews",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/recruiter/{recruiter_public_id}/interviews",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/recruiters/{recruiter_public_id}/positions",
-        "method": "GET",
-        "output_encoding": "no-op",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/recruiters/{recruiter_public_id}/positions",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/recruiter/interviews",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "input_headers":[
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/recruiter/interviews",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/recruiter/{recruiter_public_id}/interviews",
-        "method": "GET",
-        "output_encoding": "no-op",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/recruiter/{recruiter_public_id}/interviews",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/recruiter/{recruiter_public_id}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_query_strings":[
+        "search",
+        "page_num",
+        "page_size"
+      ],
+      "input_headers":[
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/recruiter/{recruiter_public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-users-main-service:9002"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/recruiter/interviews",
-        "method": "GET",
-        "output_encoding": "no-op",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "input_headers":[
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/recruiter/interviews",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/position/{position_public_id}/questions",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers":[
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/position/{position_public_id}/questions",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/recruiter/{recruiter_public_id}",
-        "method": "GET",
-        "output_encoding": "no-op",
-        "input_query_strings":[
-          "search",
-          "page_num",
-          "page_size"
-        ],
-        "input_headers":[
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/recruiter/{recruiter_public_id}",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-users-main-service:9002"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/position/{position_public_id}/questions",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_headers":[
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/position/{position_public_id}/questions",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/position/{position_public_id}/questions",
-        "method": "POST",
-        "output_encoding": "no-op",
-        "input_headers":[
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/position/{position_public_id}/questions",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/position/{position_public_id}/interview",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers":[
+        "Cookie"
+      ],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/position/{position_public_id}/interview",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/position/{position_public_id}/questions",
-        "method": "GET",
-        "output_encoding": "no-op",
-        "input_headers":[
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/position/{position_public_id}/questions",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/interview/{id}/result",
+      "timeout": "600s",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers":[
+        "Cookie"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/interview/{id}/result",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-interview-main-service:9003"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      },
-      {
-        "endpoint": "/position/{position_public_id}/interview",
-        "method": "POST",
-        "output_encoding": "no-op",
-        "input_headers":[
-          "Cookie"
-        ],
-        "backend": [
-          {
-            "url_pattern": "/position/{position_public_id}/interview",
-            "encoding": "no-op",
-            "host": [
-              "http://sp-positions-main-service:9000"
-            ],
-            "extra_config": {
-              "github.com/devopsfaith/krakend-cors": {}
-            }
+        }
+      ]
+    },
+    {
+      "endpoint": "/question/{id}/video",
+      "timeout": "1s",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "input_headers":[
+        "Cookie"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/question/{id}/video",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-interview-main-service:9003"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
           }
-        ]
-      }
-    ]
-  }
+        }
+      ]
+    }
+  ]
+}
