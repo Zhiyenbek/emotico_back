@@ -64,13 +64,6 @@ CREATE TABLE IF NOT EXISTS interviews (
     results JSONB
 );
 
-CREATE TABLE IF NOT EXISTS videos (
-    id SERIAL PRIMARY KEY,
-    public_id UUID UNIQUE DEFAULT uuid_generate_v4() NOT NULL,
-    interviews_public_id UUID,
-    path TEXT NOT NULL DEFAULT ''
-);
-
 CREATE TABLE IF NOT EXISTS auth (
     id SERIAL PRIMARY KEY,
     user_id INT UNIQUE,
@@ -114,6 +107,15 @@ CREATE TABLE IF NOT EXISTS questions (
     answer_duration int,
     CONSTRAINT fk_question_position FOREIGN KEY (position_id) REFERENCES positions(id) ON DELETE CASCADE,
     CONSTRAINT fk_question_public_position FOREIGN KEY (position_public_id) REFERENCES positions(public_id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS videos (
+    id SERIAL PRIMARY KEY,
+    public_id UUID UNIQUE DEFAULT uuid_generate_v4() NOT NULL,
+    question_public_id UUID,
+    interviews_public_id UUID,
+    CONSTRAINT fk_video_question FOREIGN KEY (question_public_id) REFERENCES questions(public_id) ON DELETE CASCADE,
+    path TEXT NOT NULL DEFAULT ''
 );
 
 -- Creating references

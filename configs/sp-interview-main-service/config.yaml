@@ -2,7 +2,7 @@ app:
   port: 9003
   timeout: 60s
 db:
-  host: localhost
+  host: postgres
   port: 5432
   user: postgres
   password: postgres
@@ -11,7 +11,7 @@ db:
   timeout: 20s
 video:
   path: /app/videos
-  url: 
+  url: http://sp-video-answer-analyzer:9004
 redis:
   host: localhost
   port: 6379
