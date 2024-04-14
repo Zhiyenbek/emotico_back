@@ -807,6 +807,44 @@
           }
         }
       ]
+    },
+    {
+      "endpoint": "/question/{question_public_id}",
+      "method": "PUT",
+      "output_encoding": "no-op",
+      "input_query_strings": [],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/question/{question_public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/question/{question_public_id}",
+      "method": "DELETE",
+      "output_encoding": "no-op",
+      "input_query_strings": [],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/question/{question_public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-positions-main-service:9000"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
+          }
+        }
+      ]
     }
   ]
 }
