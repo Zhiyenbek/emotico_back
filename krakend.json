@@ -845,6 +845,44 @@
           }
         }
       ]
+    },
+    {
+      "endpoint": "/interview/{question_public_id}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_query_strings": [],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/interview/{question_public_id}",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-interview-main-service:9003"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/interviews",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "input_query_strings": [],
+      "timeout": "1s",
+      "backend": [
+        {
+          "url_pattern": "/interviews",
+          "encoding": "no-op",
+          "host": [
+            "http://sp-interview-main-service:9003"
+          ],
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cors": {}
+          }
+        }
+      ]
     }
   ]
 }
